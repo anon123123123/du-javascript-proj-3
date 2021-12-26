@@ -70,7 +70,13 @@ pass_form.onclick = function () {
   let upperCase = document.getElementById('upper-case').checked
   let numbers = document.getElementById('numbers').checked
   let specialChars = document.getElementById('special-chars').checked
-  writePassword(length, lowerCase, upperCase, numbers, specialChars)
+  //Perform validate 
+  let boxCheck = validatePassSelect()
+  if (boxCheck === true) {
+    writePassword(length, lowerCase, upperCase, numbers, specialChars)
+  } else {
+    return
+  }
 }
 
 
@@ -98,5 +104,17 @@ copyBtn.addEventListener("click", copyPass);
 
 async function copyPass() {
   let copyText = document.getElementById("password_hidden").value;
-  navigator.clipboard.writeText(copyText)  
+  navigator.clipboard.writeText(copyText)
+}
+
+// Validation Function Ensure One Selection
+function validatePassSelect() {
+  let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  let checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
+  if (checkedOne === false) {
+    alert('You Must Select at Least One Character Set')
+    return false
+  } else {
+    return true
+  }
 }
