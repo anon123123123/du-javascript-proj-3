@@ -104,9 +104,8 @@ button[disabled] {
   top: 25%;
   left: 25%;
   right: 25%;
-  width: 500px; /* Need a specific value to work */
-  height: 500px;
-  border: solid black;
+  width: 320px; /* Fits smallest screens */
+  height: auto;
   background-color: white;
 }
 
@@ -147,6 +146,10 @@ button[disabled] {
   cursor: pointer;
 }
 
+#password-conf {
+  padding: .5rem;
+  font-size: 1rem;
+}
 /* End Custom Code  */
 
 #password {

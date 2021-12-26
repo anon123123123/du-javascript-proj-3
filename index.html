@@ -19,6 +19,7 @@
         <h2>Generate a Password</h2>
       </div>
       <div class="card-body">
+        <!-- Make a hidden real value to avoid display in UI w/o user consent -->
         <textarea  class="hidden" readonly id="password_hidden" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
 
         <textarea readonly id="password" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
@@ -34,23 +35,23 @@
 
   <!-- Add Custom Prompt -->
   <div class="hidden" id="password-wizard-prompt">
-    <div class="custom-prompt">
+    <div class="custom-prompt card">
       <h3>Password Generator Wizard</h3>
       <div>
         <div class="slidecontainer">
           <form id="password-wiz-form" action="#">    
             <input type="range" min="8" max="128" value="24" class="slider" id="pass-length-slider">
             <label for="pass-length-slider"> Enter Password Length:</label><br>
-            <p>Length: <span id="pass-length"></span></p>
+            <p>Length: <span id="pass-length"></span></p><br>
             Character Sets To Include:<br>
             <input type="checkbox" id="lower-case" name="lower-case" value="Lowercase" checked>
             <label for="lower-case"> Lowercase</label><br>
             <input type="checkbox" id="upper-case" name="upper-case" value="Uppercase" checked>
             <label for="upper-case">Uppercase</label><br>
             <input type="checkbox" id="numbers" name="numbers" value="Numbers" checked>
-            <label for="numbers">Numbers</label>
+            <label for="numbers">Numbers</label><br>
             <input type="checkbox" id="special-chars" name="special-chars" value="Special" checked>
-            <label for="special-chars">Special Character</label>
+            <label for="special-chars">Special Character</label><br><br>
             <input id="password-conf" type="button" value="Submit">
           </form>
         </div>

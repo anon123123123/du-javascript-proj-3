@@ -11,8 +11,8 @@ async function writePassword(length, lowerCase, upperCase, numbers, specialChars
   passwordText.value = passHideStars;
   passwordStars.value = password;
   // Unhide password copy /show buttons and hide real pass
-  document.getElementById('copy-pass').classList.toggle('hidden')
-  document.getElementById('show-pass').classList.toggle('hidden')
+  document.getElementById('copy-pass').classList.remove('hidden')
+  document.getElementById('show-pass').classList.remove('hidden')
 }
 
 // Add event listener to generate button
@@ -90,4 +90,13 @@ async function showPass() {
     document.getElementById('password').value = hidePass
     showBtn.innerText = "Show"
   }
+}
+
+// Copy Button Functions 
+let copyBtn = document.getElementById('copy-pass')
+copyBtn.addEventListener("click", copyPass);
+
+async function copyPass() {
+  let copyText = document.getElementById("password_hidden").value;
+  navigator.clipboard.writeText(copyText)  
 }
