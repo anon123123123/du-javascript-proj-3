@@ -3,11 +3,16 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 async function writePassword(length, lowerCase, upperCase, numbers, specialChars) {
-  var password = await generatePassword(length, lowerCase, upperCase, numbers, specialChars);
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
+  let password = await generatePassword(length, lowerCase, upperCase, numbers, specialChars);
+  let stars = "*"
+  let passHideStars = stars.repeat(length)
+  let passwordText = document.querySelector("#password");
+  let passwordStars = document.querySelector("#password_hidden");
+  passwordText.value = passHideStars;
+  passwordStars.value = password;
+  // Unhide password copy /show buttons and hide real pass
+  document.getElementById('copy-pass').classList.toggle('hidden')
+  document.getElementById('show-pass').classList.toggle('hidden')
 }
 
 // Add event listener to generate button
@@ -39,7 +44,6 @@ async function generatePassword(length, lowerCase, upperCase, numbers, specialCh
       password += chars.substring(randomNumber, randomNumber + 1);
     }
     document.querySelector('#password-wizard-prompt').classList.toggle('hidden')
-    console.log(password)
     resolve(password)
   });
 }
@@ -67,4 +71,23 @@ pass_form.onclick = function () {
   let numbers = document.getElementById('numbers').checked
   let specialChars = document.getElementById('special-chars').checked
   writePassword(length, lowerCase, upperCase, numbers, specialChars)
+}
+
+
+// Show Button Functions 
+let showBtn = document.getElementById('show-pass')
+showBtn.addEventListener("click", showPass);
+
+async function showPass() {
+  let realPass = document.getElementById('password_hidden').value
+  if (showBtn.innerText === "Show") {
+    document.getElementById('password').value = realPass
+    showBtn.innerText = "Hide"
+  } else {
+    let star = "*"
+    let length = realPass.length
+    let hidePass = star.repeat(length)
+    document.getElementById('password').value = hidePass
+    showBtn.innerText = "Show"
+  }
 }

@@ -99,10 +99,6 @@ button[disabled] {
 
 /* Begin Custom code */
 /* Prompt Box */
-.hidden {
-  display: none;
-}
-
 .custom-prompt {
   position: absolute; 
   top: 25%;
@@ -172,6 +168,10 @@ button[disabled] {
   border-radius: 6px;
   resize: none;
   overflow: hidden;
+}
+
+.hidden {
+  display: none;
 }
 
 @media (max-width: 690px) {

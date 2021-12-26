@@ -19,11 +19,13 @@
         <h2>Generate a Password</h2>
       </div>
       <div class="card-body">
+        <textarea  class="hidden" readonly id="password_hidden" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
+
         <textarea readonly id="password" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
+
       </div>
       <div class="card-footer">
         <button id="generate" class="btn">Generate Password</button>
-        <!-- To DO below: -->
         <button id="copy-pass" class="btn hidden">Copy</button>
         <button id="show-pass" class="btn hidden">Show</button>
       </div>
