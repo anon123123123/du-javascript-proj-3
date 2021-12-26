@@ -1,5 +1,6 @@
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
+let generateBtn = document.querySelector("#generate");
+let showBtn = document.getElementById('show-pass')
 
 // Write password to the #password input
 async function writePassword(length, lowerCase, upperCase, numbers, specialChars) {
@@ -65,6 +66,7 @@ slider.oninput = function () {
 // Password Options   
 let pass_form = document.getElementById('password-conf')
 pass_form.onclick = function () {
+  showBtn.innerText = "Show"
   let length = document.getElementById('pass-length-slider').value
   let lowerCase = document.getElementById('lower-case').checked
   let upperCase = document.getElementById('upper-case').checked
@@ -81,7 +83,6 @@ pass_form.onclick = function () {
 
 
 // Show Button Functions 
-let showBtn = document.getElementById('show-pass')
 showBtn.addEventListener("click", showPass);
 
 async function showPass() {
