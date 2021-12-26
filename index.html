@@ -24,20 +24,19 @@
       <div class="card-footer">
         <button id="generate" class="btn">Generate Password</button>
         <!-- To DO below: -->
-        <button id="copy-pass" class="btn">Copy</button>
-        <button id="show-pass" class="btn">Show</button>
+        <button id="copy-pass" class="btn hidden">Copy</button>
+        <button id="show-pass" class="btn hidden">Show</button>
       </div>
     </div>
   </div>
 
   <!-- Add Custom Prompt -->
-  <div class="hidden-prompt" id="password-wizard-prompt">
+  <div class="hidden" id="password-wizard-prompt">
     <div class="custom-prompt">
       <h3>Password Generator Wizard</h3>
       <div>
-        <!-- Thanks to https://www.w3schools.com/howto/howto_js_rangeslider.asp -->
         <div class="slidecontainer">
-          <form>         
+          <form id="password-wiz-form" action="#">    
             <input type="range" min="8" max="128" value="24" class="slider" id="pass-length-slider">
             <label for="pass-length-slider"> Enter Password Length:</label><br>
             <p>Length: <span id="pass-length"></span></p>
@@ -45,16 +44,19 @@
             <input type="checkbox" id="lower-case" name="lower-case" value="Lowercase" checked>
             <label for="lower-case"> Lowercase</label><br>
             <input type="checkbox" id="upper-case" name="upper-case" value="Uppercase" checked>
-            <label for="upper-case"> Uppercase</label><br>
+            <label for="upper-case">Uppercase</label><br>
             <input type="checkbox" id="numbers" name="numbers" value="Numbers" checked>
             <label for="numbers">Numbers</label>
             <input type="checkbox" id="special-chars" name="special-chars" value="Special" checked>
             <label for="special-chars">Special Character</label>
+            <input type="submit" value="Submit">
           </form>
         </div>
       </div>
     </div>
   </div>
+  <!-- Thanks:  https://www.w3schools.com/howto/howto_js_rangeslider.asp 
+    https://dev.to/code_mystery/random-password-generator-using-javascript-6a -->
 
   <script src="script.js"></script>
 </body>

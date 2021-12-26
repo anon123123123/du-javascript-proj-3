@@ -99,7 +99,7 @@ button[disabled] {
 
 /* Begin Custom code */
 /* Prompt Box */
-.hidden-prompt {
+.hidden {
   display: none;
 }
 
