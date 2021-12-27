@@ -69,15 +69,15 @@ slider.oninput = async function ()  {
 
 // Password Options   
 let pass_form = document.getElementById('password-conf')
-pass_form.onclick = function () {
+pass_form.onclick = async function () {
   showBtn.innerText = "Show"
-  let length = slider.value
-  let lowerCase = document.getElementById('lower-case').checked
-  let upperCase = document.getElementById('upper-case').checked
-  let numbers = document.getElementById('numbers').checked
-  let specialChars = document.getElementById('special-chars').checked
+  let length = await slider.value
+  let lowerCase = await document.getElementById('lower-case').checked
+  let upperCase = await document.getElementById('upper-case').checked
+  let numbers = await document.getElementById('numbers').checked
+  let specialChars = await document.getElementById('special-chars').checked
   //Perform validate 
-  let boxCheck = validatePassSelect()
+  let boxCheck = await validatePassSelect()
   if (boxCheck === true) {
     writePassword(length, lowerCase, upperCase, numbers, specialChars)
   } else {
@@ -96,7 +96,7 @@ async function showPass() {
   } else {
     let star = "*"
     let length = realPass.length
-    let hidePass = star.repeat(length)
+    let hidePass = await star.repeat(length)
     document.getElementById('password').value = hidePass
     showBtn.innerText = "Show"
   }
@@ -111,13 +111,15 @@ async function copyPass() {
 }
 
 // Validation Function Ensure One Selection
-function validatePassSelect() {
-  let checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  let checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
-  if (checkedOne === false) {
-    alert('You Must Select at Least One Character Set')
-    return false
-  } else {
-    return true
-  }
+async function validatePassSelect() {
+  return new Promise((resolve) => {
+    let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    let checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
+    if (checkedOne === false) {
+      alert('You must choose at least one character set')
+      resolve(false)
+    } else {
+      resolve(true)
+    }
+  })
 }
