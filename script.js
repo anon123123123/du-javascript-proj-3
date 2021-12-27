@@ -1,6 +1,10 @@
 // Assignment Code
-let generateBtn = document.querySelector("#generate");
-let showBtn = document.getElementById('show-pass')
+// Constants 
+const generateBtn = document.querySelector("#generate");
+const showBtn = document.getElementById('show-pass')
+const copyBtn = document.getElementById('copy-pass')
+const slider = document.getElementById("pass-length-slider");
+const output = document.getElementById("pass-length");
 
 // Write password to the #password input
 async function writePassword(length, lowerCase, upperCase, numbers, specialChars) {
@@ -12,8 +16,8 @@ async function writePassword(length, lowerCase, upperCase, numbers, specialChars
   passwordText.value = passHideStars;
   passwordStars.value = password;
   // Unhide password copy /show buttons and hide real pass
-  document.getElementById('copy-pass').classList.remove('hidden')
-  document.getElementById('show-pass').classList.remove('hidden')
+  copyBtn.classList.remove('hidden')
+  showBtn.classList.remove('hidden')
 }
 
 // Add event listener to generate button
@@ -23,8 +27,8 @@ generateBtn.addEventListener("click", displayPrompt);
 async function generatePassword(length, lowerCase, upperCase, numbers, specialChars) {
   return new Promise(resolve => {
     // Blank vars to be filled 
-    var chars = "";
-    var password = "";
+    let chars = "";
+    let password = "";
     let base_char = "abcdefghijklmnopqrstuvwxyz"
     // IFs check options and create char set 
     if (lowerCase === true) {
@@ -50,24 +54,24 @@ async function generatePassword(length, lowerCase, upperCase, numbers, specialCh
 }
 
 // Display Custom Form
-function displayPrompt() {
+async function displayPrompt() {
   document.querySelector('#password-wizard-prompt').classList.toggle('hidden')
 }
 
-// Character Length Slider Controller 
-const slider = document.getElementById("pass-length-slider");
-let output = document.getElementById("pass-length");
-output.innerHTML = slider.value;
+// Character Length Slider Controller add values to txt
+output.innerText= slider.value;
 
-slider.oninput = function () {
-  output.innerHTML = this.value;
+// Leaving Synchronous for proper display of value  
+slider.oninput = async function ()  {
+  let x = await slider.value
+  output.innerText= x;
 }
 
 // Password Options   
 let pass_form = document.getElementById('password-conf')
 pass_form.onclick = function () {
   showBtn.innerText = "Show"
-  let length = document.getElementById('pass-length-slider').value
+  let length = slider.value
   let lowerCase = document.getElementById('lower-case').checked
   let upperCase = document.getElementById('upper-case').checked
   let numbers = document.getElementById('numbers').checked
@@ -80,7 +84,6 @@ pass_form.onclick = function () {
     return
   }
 }
-
 
 // Show Button Functions 
 showBtn.addEventListener("click", showPass);
@@ -100,11 +103,10 @@ async function showPass() {
 }
 
 // Copy Button Functions 
-let copyBtn = document.getElementById('copy-pass')
 copyBtn.addEventListener("click", copyPass);
 
 async function copyPass() {
-  let copyText = document.getElementById("password_hidden").value;
+  let copyText = await document.getElementById("password_hidden").value;
   navigator.clipboard.writeText(copyText)
 }
 
